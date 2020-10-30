@@ -1,48 +1,48 @@
-var VideoGame = (function () {
-    function VideoGame() {
+var ItemAuction = (function () {
+    function ItemAuction() {
     }
-    return VideoGame;
+    return ItemAuction;
 }());
 window.onload = function () {
     var addBtn = document.querySelector("input[type=button]");
-    addBtn.onclick = addVideoGame;
+    addBtn.onclick = addItem;
 };
-function addVideoGame() {
+function addItem() {
     console.log("Add video game was called");
     if (isAllDataValid()) {
-        var game = getVideGame();
-        displayGame(game);
+        var game = getAuction();
+        displayItem(game);
     }
 }
 function getById(id) {
     return document.getElementById(id);
 }
-function getVideGame() {
-    var game = new VideoGame();
+function getAuction() {
+    var Item = new ItemAuction();
     var titleInput = getById("title");
-    game.title = titleInput.value;
+    Item.title = titleInput.value;
     var priceInput = getById("price");
-    game.Price = parseFloat(priceInput.value);
-    var digitalOnly = getById("online");
-    game.isDigitalOnly = digitalOnly.checked;
-    console.log(game);
-    return game;
+    Item.Price = parseFloat(priceInput.value);
+    var bindItem = getById("Bind");
+    Item.isBindItem = bindItem.checked;
+    console.log(Item);
+    return Item;
 }
-function displayGame(myGame) {
+function displayItem(myGame) {
     var displayDiv = getById("display");
-    var gameHeading = document.createElement("h2");
-    gameHeading.innerText = myGame.title;
-    var gameInfo = document.createElement("p");
-    var gameMediumDisplay = "";
-    if (myGame.isDigitalOnly) {
-        gameMediumDisplay = "This is a digital only game.";
+    var ItemHeading = document.createElement("h2");
+    ItemHeading.innerText = myGame.title;
+    var itemInfo = document.createElement("p");
+    var bindItemInfo = "";
+    if (myGame.isBindItem) {
+        bindItemInfo = "This is bind once it traded.";
     }
     else {
-        gameMediumDisplay = "You can come buy a physical copy!";
+        bindItemInfo = "It is not a bind Item!";
     }
-    gameInfo.innerText = myGame.title + " has a rating of " + myGame.Rating + ". It costs $" + myGame.Price.toFixed(2) + ". " + gameMediumDisplay;
-    displayDiv.appendChild(gameHeading);
-    displayDiv.appendChild(gameInfo);
+    itemInfo.innerText = myGame.title + " has a Option of " + myGame.Option + ". It costs $" + myGame.Price.toFixed(2) + ". " + bindItemInfo;
+    displayDiv.appendChild(ItemHeading);
+    displayDiv.appendChild(itemInfo);
 }
 function isAllDataValid() {
     return true;
